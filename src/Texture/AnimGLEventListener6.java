@@ -154,15 +154,15 @@ public class AnimGLEventListener6 extends AnimListener {
             vis2=vis2%6;        
             
             
-            DrawVis(gl);
-            DrawVis2(gl);
+            DrawBulletsNumber(gl);
+            DrawBulletsNumber2(gl);
            
             
-            moveLead(gl, visible, xlead, ylead,1);
-             moveLead(gl, visible2, xlead2, ylead2,2);
+            moveBullet(gl, visible, xlead, ylead,1);
+             moveBullet(gl, visible2, xlead2, ylead2,2);
 
-              DrawSprite2(gl, x2, 90, animationIndex2, 1);
-           DrawSprite(gl, x, y, animationIndex, 1);
+              DrawPlayer2(gl, x2, 90, animationIndex2, 1);
+           DrawPlayer1(gl, x, y, animationIndex, 1);
             if(ispause)
             {
                 DrawPause(gl);
@@ -170,11 +170,11 @@ public class AnimGLEventListener6 extends AnimListener {
             for(int qq = 0; qq < 5;qq++){
                 
                 if((xlead[qq]>x2-5 && xlead[qq]<x2+5)&& ylead[qq]<105 &&ylead[qq]>95){
-                    DrawP1(gl);
+                    DrawPlayer1Win(gl);
                     nopause=false;
                 }
                 else if((xlead2[qq]>x-5 && xlead2[qq]<x+5)&& ylead2[qq]<5 &&ylead2[qq]>-5){
-                    DrawP2(gl);
+                    DrawPlayer1Win(gl);
                     nopause=false;
                 }
                 if(ylead[qq]>=100){
@@ -192,9 +192,9 @@ public class AnimGLEventListener6 extends AnimListener {
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
     }
     
-    public void DrawSprite(GL gl,int x, int y, int index, float scale){
+    public void DrawPlayer1(GL gl,int x, int y, int index, float scale){
         gl.glEnable(GL.GL_BLEND);
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);	
         
         gl.glPushMatrix();
             gl.glTranslated( x/(maxWidth/2.0) - 0.9, y/(maxHeight/2.0) - 0.9, 0);
@@ -215,7 +215,7 @@ public class AnimGLEventListener6 extends AnimListener {
         gl.glPopMatrix();
         gl.glDisable(GL.GL_BLEND);
     }
-    public void DrawSprite2(GL gl,int x, int y, int index, float scale){
+    public void DrawPlayer2(GL gl,int x, int y, int index, float scale){
         gl.glEnable(GL.GL_BLEND);
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);	
         
@@ -240,7 +240,7 @@ public class AnimGLEventListener6 extends AnimListener {
         
         gl.glDisable(GL.GL_BLEND);
     }
-     public void DrawVis(GL gl){
+     public void DrawBulletsNumber(GL gl){
         gl.glEnable(GL.GL_BLEND);	
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[vis+7]);	
 
@@ -263,7 +263,7 @@ public class AnimGLEventListener6 extends AnimListener {
         
         gl.glDisable(GL.GL_BLEND);
     }
-     public void DrawVis2(GL gl){
+     public void DrawBulletsNumber2(GL gl){
         gl.glEnable(GL.GL_BLEND);	
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[vis2+7]);	
 
@@ -327,7 +327,7 @@ public class AnimGLEventListener6 extends AnimListener {
         
         gl.glDisable(GL.GL_BLEND);
     }
-    public void DrawP1(GL gl){
+    public void DrawPlayer1Win(GL gl){
         gl.glEnable(GL.GL_BLEND);	
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[13]);	
 
@@ -348,7 +348,7 @@ public class AnimGLEventListener6 extends AnimListener {
         Anim.animator.stop();
         gl.glDisable(GL.GL_BLEND);
     }
-    public void DrawP2(GL gl){
+    public void DrawPlayer2Win(GL gl){
         gl.glEnable(GL.GL_BLEND);	
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[14]);	
 
@@ -370,7 +370,7 @@ public class AnimGLEventListener6 extends AnimListener {
         gl.glDisable(GL.GL_BLEND);
     }
    
-   public void DrawLead(GL gl,int x, int y){
+   public void DrawBullet(GL gl,int x, int y){
        float scalex=118f,scaley=442f;
         gl.glEnable(GL.GL_BLEND);
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[6]);	
@@ -395,7 +395,7 @@ public class AnimGLEventListener6 extends AnimListener {
         
         gl.glDisable(GL.GL_BLEND);
     }
-   public void DrawLead2(GL gl,int x, int y){
+   public void DrawBullet2(GL gl,int x, int y){
        float scalex=118f,scaley=442f;
         gl.glEnable(GL.GL_BLEND);
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[6]);	
@@ -421,12 +421,12 @@ public class AnimGLEventListener6 extends AnimListener {
         gl.glDisable(GL.GL_BLEND);
     }
   
-   public void moveLead(GL gl,boolean isvisiable[] ,int xLead[],int yLead[],int no){
+   public void moveBullet(GL gl,boolean isvisiable[] ,int xLead[],int yLead[],int no){
        if(no==1){
        for(int i=0;i<isvisiable.length ;i++ ){
             if(isvisiable[i]==true){
                 
-                DrawLead(gl,xLead[i],yLead[i]=yLead[i]+5);
+                DrawBullet(gl,xLead[i],yLead[i]=yLead[i]+5);
                 if( yLead[i]>=100  || yLead[i]<=0 ){
                 isvisiable[i]= false;
                 
@@ -439,7 +439,7 @@ public class AnimGLEventListener6 extends AnimListener {
        for(int i=0;i<isvisiable.length ;i++ ){
             if(isvisiable[i]==true){
                 
-                DrawLead2(gl,xLead[i],yLead[i]=yLead[i]-5);
+                DrawBullet2(gl,xLead[i],yLead[i]=yLead[i]-5);
                 if( yLead[i]>=100  || yLead[i]<=0 ){
                 isvisiable[i]= false;
                 
@@ -450,7 +450,7 @@ public class AnimGLEventListener6 extends AnimListener {
        }
    }
   
-    public void setLead(boolean visible[],int x[],int y[]){
+    public void setBullet(boolean visible[],int x[],int y[]){
         for(int i=0;i<visible.length;i++){
             if(visible[i]==false){
                 visible[i] = true;
@@ -463,7 +463,7 @@ public class AnimGLEventListener6 extends AnimListener {
             }
         }
     }
-    public void setLead2(boolean visible[],int x[],int y[]){
+    public void setBullet2(boolean visible[],int x[],int y[]){
         for(int i=0;i<visible.length;i++){
             if(visible[i]==false){
                 visible[i] = true;
@@ -513,14 +513,14 @@ public class AnimGLEventListener6 extends AnimListener {
         if (isKeyPressed(KeyEvent.VK_SPACE)) {
             
             if(changeVis){
-            this.setLead(visible, this.xlead, this.ylead);
+            this.setBullet(visible, this.xlead, this.ylead);
             start = System.currentTimeMillis();
             }
         }
         if (isKeyPressed(KeyEvent.VK_F)) {
             
             if(changeVis2){
-            this.setLead2(visible2, this.xlead2, this.ylead2);
+            this.setBullet2(visible2, this.xlead2, this.ylead2);
             start2 = System.currentTimeMillis();
             
             }

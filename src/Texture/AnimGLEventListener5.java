@@ -178,12 +178,12 @@ public class AnimGLEventListener5 extends AnimListener {
                     
             
           
-            DrawVis(gl);
+            DrawBulletsNumber(gl);
         
             
             
-            this.moveLead(gl, visible, xlead, ylead,1);
-            DrawSprite(gl, x, y, animationIndex, 1);
+            this.moveBullet(gl, visible, xlead, ylead,1);
+            DrawPlayer(gl, x, y, animationIndex, 1);
             
             
          
@@ -331,7 +331,7 @@ public class AnimGLEventListener5 extends AnimListener {
     
     }
     //Character
-    public void DrawSprite(GL gl,int x, int y, int index, float scale){
+    public void DrawPlayer(GL gl,int x, int y, int index, float scale){
         gl.glEnable(GL.GL_BLEND);
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);	
         
@@ -356,7 +356,7 @@ public class AnimGLEventListener5 extends AnimListener {
         gl.glDisable(GL.GL_BLEND);
     }
     //Bullets number
-     public void DrawVis(GL gl){
+     public void DrawBulletsNumber(GL gl){
         gl.glEnable(GL.GL_BLEND);	
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[vis+7]);	
 
@@ -446,7 +446,7 @@ public class AnimGLEventListener5 extends AnimListener {
         gl.glDisable(GL.GL_BLEND);
     }
   //Bullet
-   public void DrawLead(GL gl,int x, int y){
+   public void DrawBullet(GL gl,int x, int y){
        float scalex=118f,scaley=442f;
         gl.glEnable(GL.GL_BLEND);
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[6]);	// Turn Blending On
@@ -473,12 +473,12 @@ public class AnimGLEventListener5 extends AnimListener {
     }
    
  
-   public void moveLead(GL gl,boolean isvisiable[] ,int xLead[],int yLead[],int no){
+   public void moveBullet(GL gl,boolean isvisiable[] ,int xLead[],int yLead[],int no){
        if(no==1){
        for(int i=0;i<isvisiable.length ;i++ ){
             if(isvisiable[i]==true){
                 
-                DrawLead(gl,xLead[i],yLead[i]=yLead[i]+3);
+                DrawBullet(gl,xLead[i],yLead[i]=yLead[i]+3);
                 if( yLead[i]>=100  || yLead[i]<=0 ){
                     visible[i]= false;
                 
@@ -490,7 +490,7 @@ public class AnimGLEventListener5 extends AnimListener {
        
    }
     
-    public void setLead(boolean visible[],int x[],int y[]){
+    public void setBullet(boolean visible[],int x[],int y[]){
         for(int i=0;i<visible.length;i++){
             if(visible[i]==false){
                 visible[i] = true;
@@ -638,7 +638,7 @@ public class AnimGLEventListener5 extends AnimListener {
         if (isKeyPressed(KeyEvent.VK_SPACE)) {
             
             if(changeVis){
-            this.setLead(visible, this.xlead, this.ylead);
+            this.setBullet(visible, this.xlead, this.ylead);
             start = System.currentTimeMillis();
             }
         }
