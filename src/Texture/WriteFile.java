@@ -2,11 +2,7 @@
 
 
 package Texture;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -17,26 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class WriteFile {
-//    public static void main(String[] args) throws IOException{
-//        String file_name = "E:\\3rd year\\gui\\Final section - Compressed\\Final section - Compressed\\src\\a.txt";
-//        WriteFile data = new WriteFile( file_name );
-//        //data.writeToFile( "This is another line of text" );
-//        File f = new File(file_name);
-//        Scanner input = new Scanner(f);
-//        String a ;
-//        cheakScore("mahmoud",300);
-//        while(input.hasNext()){
-//             a =input.nextLine();
-//             System.out.println(a);
-//        }
-//        
-//
-//    }
-    
-    
-    
-    
-    
+
     private String path ;
     private boolean append_to_file = false;
 
@@ -69,11 +46,11 @@ public class WriteFile {
             Logger.getLogger(WriteFile.class.getName()).log(Level.SEVERE, null, ex);
         }
         String [] score = new String[10];
-        /*get score and set it to array*/
+       
         for(int i = 0; i < score.length; i++){
                 score[i] = input.nextLine();
             }
-        /*check if the new score is high of one of this score*/
+       
         for(int i = 0; i < score.length; i+=2){
                 if(Integer.parseInt(score[i+1]) < a){
                 return true;
@@ -86,11 +63,11 @@ public class WriteFile {
         File f = new File(file_name);
         Scanner input = new Scanner(f);
         String [] score = new String[10];
-        /*get score and set it to array*/
+      
         for(int i = 0; i < score.length; i++){
                 score[i] = input.nextLine();
             }
-        /*check if the new score is high of one of this score*/
+        
        return score;
     }
     public static void cheakScore(String s,int a) throws FileNotFoundException, IOException{
@@ -98,11 +75,11 @@ public class WriteFile {
         File f = new File(file_name);
         Scanner input = new Scanner(f);
         String [] score = new String[10];
-        /*get score and set it to array*/
+       
         for(int i = 0; i < score.length; i++){
                 score[i] = input.nextLine();
             }
-        /*check if the new score is high of one of this score*/
+       
         for(int i = 0; i < score.length; i+=2){
                 if(Integer.parseInt(score[i+1]) < a){
                     System.out.println(s+" this"+(s==""));
@@ -114,11 +91,11 @@ public class WriteFile {
                 break;
             }
         }
-        /*make file empty*/
+        
         FileWriter write = new FileWriter(file_name,false);
         PrintWriter print_line = new PrintWriter(write);
         print_line.print("");
-        /*write the new score*/
+       
          write = new FileWriter(file_name,true);
          print_line = new PrintWriter(write);
         for(int i = 0; i < score.length; i++){
