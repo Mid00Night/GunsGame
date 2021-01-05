@@ -204,18 +204,26 @@ public class AnimGLEventListener5 extends AnimListener {
            
             if(isEasy)
                 if(score==5){
-                 
+                LevelUP();
                 makeHard1();
                  
                         }                    
-                if(score==15){
+                if(score==20){
                     
                 makeHard1();
+                LevelUP();
                         }                    
-                if(score==25){
+                if(score==30){
                    
                 makeHard3();
-                        }                    
+                LevelUP();
+                        } 
+                if (score == 40) {
+                    makeHard4();
+                    LevelUP();
+                    
+            
+        }
             if(ispause)
             {
                 DrawPause(gl);
@@ -303,6 +311,23 @@ public class AnimGLEventListener5 extends AnimListener {
         
         
     }
+     public void makeHard4(){
+        int i=20;
+        
+        boolean vis [] = new boolean[i];
+        int x [] = new int[i];
+        int y [] = new int[i];
+        int a [] = new int[i];
+        System.arraycopy(this.xZombie, 0, x, 0, this.xZombie.length);
+        this.xZombie = x;
+        System.arraycopy(this.yZombie, 0, y, 0, this.yZombie.length);
+        this.yZombie = y;
+        System.arraycopy(this.animateZombie, 0, a, 0, this.animateZombie.length);
+        this.animateZombie = a;
+        System.arraycopy(this.zombieVisible, 0, vis, 0, this.zombieVisible.length);
+        this.zombieVisible = vis;
+       
+    }
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
     }
 
@@ -322,7 +347,7 @@ public class AnimGLEventListener5 extends AnimListener {
         String fi = String.format("%02d:%02d", 
             TimeUnit.MILLISECONDS.toMinutes(difference),
             TimeUnit.MILLISECONDS.toSeconds(difference) - 
-            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(difference))-4);
+            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(difference))-2);
         
         renderer.beginRendering(gldddd.getWidth(),gldddd.getHeight());
         renderer.draw(fi, 600, 620);
@@ -705,5 +730,12 @@ public class AnimGLEventListener5 extends AnimListener {
  
     public boolean isKeyPressed(final int keyCode) {
         return keyBits.get(keyCode);
+    }
+    
+    public void LevelUP() {
+        
+        renderer.beginRendering(gldddd.getHeight(), gldddd.getWidth());
+        renderer.draw("Level UP: Be aware for more zombies", 250, 300);
+        renderer.endRendering();
     }
 }
