@@ -144,7 +144,7 @@ public class AnimGLEventListener5 extends AnimListener {
             yZombie[i]=0;
         }
     }
-    
+    //Time Starts from 0 but in the game will start from (x second) depends on your CPU 
     public void display(GLAutoDrawable gld) {
         gldddd = gld;
         GL gl = gld.getGL();
@@ -347,7 +347,7 @@ public class AnimGLEventListener5 extends AnimListener {
         String fi = String.format("%02d:%02d", 
             TimeUnit.MILLISECONDS.toMinutes(difference),
             TimeUnit.MILLISECONDS.toSeconds(difference) - 
-            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(difference))-2);
+            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(difference)));
         
         renderer.beginRendering(gldddd.getWidth(),gldddd.getHeight());
         renderer.draw(fi, 600, 620);
@@ -607,7 +607,7 @@ public class AnimGLEventListener5 extends AnimListener {
                 DrawZombie(gl ,x[i], y[i]=y[i]-1, animate[i], 1f);
                 animate[i]++;
                 
-                if(y[i] <= 10){
+                if(y[i] <= 0){
                     heals++;
                     visible[i] = false;
                     if(heals==5){
