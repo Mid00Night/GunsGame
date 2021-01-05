@@ -87,9 +87,9 @@ public class AnimGLEventListener5 extends AnimListener {
     public void init(GLAutoDrawable gld) {
         initial();
         GL gl = gld.getGL();
-        gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);    //This Will Clear The Background Color To Black
+        gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);   
         
-        gl.glEnable(GL.GL_TEXTURE_2D);  // Enable Texture Mapping
+        gl.glEnable(GL.GL_TEXTURE_2D);  
         gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);	
         gl.glGenTextures(textureNames.length, textures, 0);
         
@@ -98,28 +98,28 @@ public class AnimGLEventListener5 extends AnimListener {
                 texture[i] = TextureReader.readTexture(assetsFolderName + "//" + textureNames[i] , true);
                 gl.glBindTexture(GL.GL_TEXTURE_2D, textures[i]);
 
-//                mipmapsFromPNG(gl, new GLU(), texture[i]);
+
                 new GLU().gluBuild2DMipmaps(
                     GL.GL_TEXTURE_2D,
-                    GL.GL_RGBA, // Internal Texel Format,
+                    GL.GL_RGBA, 
                     texture[i].getWidth(), texture[i].getHeight(),
-                    GL.GL_RGBA, // External format from image,
+                    GL.GL_RGBA, 
                     GL.GL_UNSIGNED_BYTE,
-                    texture[i].getPixels() // Imagedata
+                    texture[i].getPixels() 
                     );
             } catch( IOException e ) {
               System.out.println(e);
               e.printStackTrace();
             }
         }
-                 // music              
+                             
         try {
            music = new FileInputStream(new File("[ONTIVA.COM] Dying Light OST - Main Menu Theme 1-HQ.wav"));
             audioInputStream = AudioSystem.getAudioInputStream(new File("C:\\Users\\Altaier.DESKTOP-532GCGK\\Documents\\NetBeansProjects\\FinalGame\\[ONTIVA.COM] Dying Light OST - Main Menu Theme 1-HQ.wav").getAbsoluteFile());
-         //    create clip reference 
+        
             clip = AudioSystem.getClip(); 
           
-           //  open audioInputStream to the clip 
+           
             clip.open(audioInputStream); 
           
             clip.loop(Clip.LOOP_CONTINUOUSLY); 
@@ -128,7 +128,7 @@ public class AnimGLEventListener5 extends AnimListener {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
         }   
-        /*tgweda*/
+     
         gl.glLoadIdentity(); 
         gl.glOrtho(-maxWidth/2,  maxWidth/2,-maxHeight/2, maxHeight/2,-1,1);
 
@@ -148,11 +148,11 @@ public class AnimGLEventListener5 extends AnimListener {
     public void display(GLAutoDrawable gld) {
         gldddd = gld;
         GL gl = gld.getGL();
-        gl.glClear(GL.GL_COLOR_BUFFER_BIT);       //Clear The Screen And The Depth Buffer
+        gl.glClear(GL.GL_COLOR_BUFFER_BIT);       
         gl.glLoadIdentity(); 
         
         DrawBackground(gl);
-        /*draw al score*/
+ 
         renderer.beginRendering(gld.getWidth(),gld.getHeight());
         
         renderer.draw("score : "+score, 570, 640);
@@ -177,7 +177,7 @@ public class AnimGLEventListener5 extends AnimListener {
             vis=vis%6;
                     
             
-            //Draw vis byrsm 3dd al rosas aly m3ak bast5dam al mt8er vis
+          
             DrawVis(gl);
         
             
@@ -186,39 +186,34 @@ public class AnimGLEventListener5 extends AnimListener {
             DrawSprite(gl, x, y, animationIndex, 1);
             
             
-            /*
-            ** zombie section 
-            */
-//            checkHeal();
+         
             generateZombie(gl, zombieVisible,xZombie,yZombie);
             zombieGenerator++;
             zombieAnimate(animateZombie);
             moveZombie(gl, zombieVisible, xZombie, yZombie, animateZombie);
-            coleshon();
+            Collision();
             
             
             try {
             DrawTime();
-            //move lead bersm al rosas w y7rkha
+           
         } catch (ParseException ex) {
             Logger.getLogger(AnimGLEventListener5.class.getName()).log(Level.SEVERE, null, ex);
         }
-            DrawHeals(gl);
-            /*
-            ** pause
-            */
+            DrawLives(gl);
+           
             if(isEasy)
                 if(score==5){
-                 //  System.out.println("LEVEL UP"); 
+                 
                 makeHard1();
                  
                         }                    
                 if(score==15){
-                    //System.out.println("LEVEL UP");    
+                    
                 makeHard1();
                         }                    
                 if(score==25){
-                    //System.out.println("LEVEL UP");    
+                   
                 makeHard3();
                         }                    
             if(ispause)
@@ -240,7 +235,7 @@ public class AnimGLEventListener5 extends AnimListener {
             
                 
             
-                //DrawGameOver(gl);
+               
             }
             
 }
@@ -261,8 +256,7 @@ public class AnimGLEventListener5 extends AnimListener {
         System.arraycopy(this.zombieVisible, 0, vis, 0, this.zombieVisible.length);
         this.zombieVisible = vis;
          
-//        JOptionPane.showMessageDialog(null,"Level one complete");
-//        new Game().play();
+
         
         
         
@@ -314,9 +308,9 @@ public class AnimGLEventListener5 extends AnimListener {
 
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
     }
+    //Time
     public void DrawTime() throws ParseException{
-//        int sec1=Integer.parseInt((java.time.LocalTime.now()).toString().substring(6,8)),
-//        min1=Integer.parseInt((java.time.LocalTime.now()).toString().substring(3,5));
+
         String time1 = time;
         String time2 = java.time.LocalTime.now()+"";
         
@@ -336,13 +330,10 @@ public class AnimGLEventListener5 extends AnimListener {
         
     
     }
-    /*============================================================================
-    **                             player                                        ||
-    **============================================================================
-    */
+    //Character
     public void DrawSprite(GL gl,int x, int y, int index, float scale){
         gl.glEnable(GL.GL_BLEND);
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);	
         
         gl.glPushMatrix();
             gl.glTranslated( x/(maxWidth/2.0) - 0.9, y/(maxHeight/2.0) - 0.9, 0);
@@ -350,7 +341,7 @@ public class AnimGLEventListener5 extends AnimListener {
             
 
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+            
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -364,17 +355,17 @@ public class AnimGLEventListener5 extends AnimListener {
         
         gl.glDisable(GL.GL_BLEND);
     }
-    
+    //Bullets number
      public void DrawVis(GL gl){
         gl.glEnable(GL.GL_BLEND);	
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[vis+7]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[vis+7]);	
 
         gl.glPushMatrix();
         gl.glTranslated(-.90, .90, 0);
         gl.glScaled(0.1, 0.1, 1);
 
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+            
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -391,11 +382,11 @@ public class AnimGLEventListener5 extends AnimListener {
      
     public void DrawBackground(GL gl){
         gl.glEnable(GL.GL_BLEND);	
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[17]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[17]);	
 
         gl.glPushMatrix();
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+            
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -409,16 +400,14 @@ public class AnimGLEventListener5 extends AnimListener {
         
         gl.glDisable(GL.GL_BLEND);
     }
-    /*
-    ** Draw pause 
-    */
+  
     public void DrawPause(GL gl){
         gl.glEnable(GL.GL_BLEND);	
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[5]);	// Turn Blending On
 
         gl.glPushMatrix();
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+         
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -442,7 +431,7 @@ public class AnimGLEventListener5 extends AnimListener {
 
             gl.glBegin(GL.GL_QUADS);
             
-            // Front Face
+         
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -456,9 +445,7 @@ public class AnimGLEventListener5 extends AnimListener {
         
         gl.glDisable(GL.GL_BLEND);
     }
-    /*
-    ** Draw lead 
-    */
+  //Bullet
    public void DrawLead(GL gl,int x, int y){
        float scalex=118f,scaley=442f;
         gl.glEnable(GL.GL_BLEND);
@@ -470,7 +457,7 @@ public class AnimGLEventListener5 extends AnimListener {
             
 
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+            
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -485,10 +472,7 @@ public class AnimGLEventListener5 extends AnimListener {
         gl.glDisable(GL.GL_BLEND);
     }
    
-   /*
-   ** move the lead
-   ** 
-   */
+ 
    public void moveLead(GL gl,boolean isvisiable[] ,int xLead[],int yLead[],int no){
        if(no==1){
        for(int i=0;i<isvisiable.length ;i++ ){
@@ -505,9 +489,7 @@ public class AnimGLEventListener5 extends AnimListener {
        }
        
    }
-    /*
-    ** set the lead visiable and set it x and y 
-    */
+    
     public void setLead(boolean visible[],int x[],int y[]){
         for(int i=0;i<visible.length;i++){
             if(visible[i]==false){
@@ -521,7 +503,7 @@ public class AnimGLEventListener5 extends AnimListener {
         }
     } 
     
-    public void DrawHeals(GL gl){
+    public void DrawLives(GL gl){
         gl.glEnable(GL.GL_BLEND);	
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[heals+19]);	// Turn Blending On
 
@@ -530,7 +512,7 @@ public class AnimGLEventListener5 extends AnimListener {
         gl.glScaled(0.1, 0.1, 1);
 
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+            
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -546,10 +528,7 @@ public class AnimGLEventListener5 extends AnimListener {
     }
     
     
-    /*============================================================================
-    **                             zombie                                       ||
-    **============================================================================
-    */
+   
     
     public void DrawZombie(GL gl,int x, int y, int index, float scale){
         gl.glEnable(GL.GL_BLEND);
@@ -561,7 +540,6 @@ public class AnimGLEventListener5 extends AnimListener {
             gl.glRotatef(-90, 0, 0, 1);
 
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -608,7 +586,7 @@ public class AnimGLEventListener5 extends AnimListener {
                     heals++;
                     visible[i] = false;
                     if(heals==5){
-                        DrawHeals(gl);
+                        DrawLives(gl);
                         gameOver = true;
                         
                     }
@@ -617,10 +595,8 @@ public class AnimGLEventListener5 extends AnimListener {
             }
         }   
     }
-    /*
-    ** effects
-    */
-    public void coleshon(){
+   
+    public void Collision(){
         
         for(int i =0;i<xlead.length;i++)
             for(int j = 0; j< xZombie.length; j++){
@@ -637,17 +613,7 @@ public class AnimGLEventListener5 extends AnimListener {
                 }
         }
     }
-    
-    
-    /*
-    **
-    */
-    
-    
-    /*
-     * KeyListener
-     */    
-
+  
     public void handleKeyPress() {
 
         if (isKeyPressed(KeyEvent.VK_LEFT)) {
@@ -734,7 +700,7 @@ public class AnimGLEventListener5 extends AnimListener {
  
     @Override 
     public void keyTyped(final KeyEvent event) {
-        // don't care 
+ 
     } 
  
     public boolean isKeyPressed(final int keyCode) {

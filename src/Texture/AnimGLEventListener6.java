@@ -1,11 +1,5 @@
 package Texture;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//package project;
 
 import com.sun.opengl.util.j2d.TextRenderer;
 import java.awt.Color;
@@ -34,53 +28,46 @@ public class AnimGLEventListener6 extends AnimListener {
     
     TextRenderer renderer=new TextRenderer(new Font("SanasSerif",Font.BOLD,20));
 
-    // mt8erat al lead al player 1
+   
     boolean visible[] = {false,false,false,false,false};
     int xlead [] ={0,0,0,0,0};
     int ylead [] ={0,0,0,0,0};
     boolean nopause=true;
-    //mt8erat al lead ll player 2
+  
     boolean visible2[] = {false,false,false,false,false};
     int xlead2 [] ={0,0,0,0,0};
     int ylead2 [] ={100,100,100,100,100};
     
     int vis = 0,vis2 = 0;
-    //al start bta3 w2t ma la rosas be5ls
+   
     long start,start2;
     
     boolean changeVis = true,changeVis2=true;
-    //animation player 1 and 2
+ 
     int animationIndex = 0,animationIndex2 = 0;
     int maxWidth = 100;
     int maxHeight = 100;
-    // x and y ll player 1 and 2
+   
     int x = maxWidth/2, y = 0,x2=maxWidth/2;
     
-    // Download enemy textures from https://craftpix.net/freebies/free-monster-2d-game-items/
+   
     String textureNames[] = {"Man1.png","Man2.png","Man3.png","Man4.png","BackG.png"
             ,"pause.png","lead.png","5.png","4.png","3.png","2.png","1.png","0.png","player1.png","player2.png"};
     TextureReader.Texture texture[] = new TextureReader.Texture[textureNames.length];
     int textures[] = new int[textureNames.length];
-    //music
+  
     AudioInputStream audioInputStream; 
     Clip clip;
-    /*
-    ** set the way
-    */
     
-    /*
-     5 means gun in array pos
-     x and y coordinate for gun 
-     */
     AnimGLEventListener6(Anim aThis) {
         anim = aThis;
     }
     public void init(GLAutoDrawable gld) {
 
         GL gl = gld.getGL();
-        gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);    //This Will Clear The Background Color To Black
+        gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);   
         
-        gl.glEnable(GL.GL_TEXTURE_2D);  // Enable Texture Mapping
+        gl.glEnable(GL.GL_TEXTURE_2D);  
         gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);	
         gl.glGenTextures(textureNames.length, textures, 0);
         
@@ -89,37 +76,36 @@ public class AnimGLEventListener6 extends AnimListener {
                 texture[i] = TextureReader.readTexture(assetsFolderName + "//" + textureNames[i] , true);
                 gl.glBindTexture(GL.GL_TEXTURE_2D, textures[i]);
 
-//                mipmapsFromPNG(gl, new GLU(), texture[i]);
+
                 new GLU().gluBuild2DMipmaps(
                     GL.GL_TEXTURE_2D,
-                    GL.GL_RGBA, // Internal Texel Format,
+                    GL.GL_RGBA, 
                     texture[i].getWidth(), texture[i].getHeight(),
-                    GL.GL_RGBA, // External format from image,
+                    GL.GL_RGBA, 
                     GL.GL_UNSIGNED_BYTE,
-                    texture[i].getPixels() // Imagedata
+                    texture[i].getPixels() 
                     );
             } catch( IOException e ) {
               System.out.println(e);
               e.printStackTrace();
             }
         }
-        //           music            
+           
         try {
             music = new FileInputStream(new File("[ONTIVA.COM] Cyberpunk 2077 - Main Menu Theme-HQ.wav"));
             audioInputStream = AudioSystem.getAudioInputStream(new File("C:\\Users\\Altaier.DESKTOP-532GCGK\\Documents\\NetBeansProjects\\FinalGame\\[ONTIVA.COM] Cyberpunk 2077 - Main Menu Theme-HQ.wav").getAbsoluteFile());
-            // create clip reference 
+   
             clip = AudioSystem.getClip(); 
           
-            // open audioInputStream to the clip 
+   
             clip.open(audioInputStream); 
           
             clip.loop(Clip.LOOP_CONTINUOUSLY); 
-//            audios = new AudioStream(music);
-//            AudioPlayer.player.start(audios);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
         } 
-        /*tgweda*/
+       
         gl.glLoadIdentity(); 
         gl.glOrtho(-maxWidth/2,  maxWidth/2,-maxHeight/2, maxHeight/2,-1,1);
 
@@ -128,13 +114,13 @@ public class AnimGLEventListener6 extends AnimListener {
     public void display(GLAutoDrawable gld) {
         gldddd = gld;
         GL gl = gld.getGL();
-        gl.glClear(GL.GL_COLOR_BUFFER_BIT);       //Clear The Screen And The Depth Buffer
+        gl.glClear(GL.GL_COLOR_BUFFER_BIT);       
         gl.glLoadIdentity(); 
         
         
         
         DrawBackground(gl);
-        /*draw al score*/
+     
         
         
         handleKeyPress();
@@ -167,10 +153,10 @@ public class AnimGLEventListener6 extends AnimListener {
             vis=vis%6;
             vis2=vis2%6;        
             
-            //Draw vis byrsm 3dd al rosas aly m3ak bast5dam al mt8er vis
+            
             DrawVis(gl);
             DrawVis2(gl);
-            //move lead bersm al rosas w y7rkha
+           
             
             moveLead(gl, visible, xlead, ylead,1);
              moveLead(gl, visible2, xlead2, ylead2,2);
@@ -216,7 +202,7 @@ public class AnimGLEventListener6 extends AnimListener {
             
 
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+          
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -227,12 +213,11 @@ public class AnimGLEventListener6 extends AnimListener {
                 gl.glVertex3f(-1.0f, 1.0f, -1.0f);
             gl.glEnd();
         gl.glPopMatrix();
-        
         gl.glDisable(GL.GL_BLEND);
     }
     public void DrawSprite2(GL gl,int x, int y, int index, float scale){
         gl.glEnable(GL.GL_BLEND);
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);	
         
         gl.glPushMatrix();
             gl.glTranslated( x/(maxWidth/2.0) - 0.9, y/(maxHeight/2.0) - 0.9, 0);
@@ -241,7 +226,7 @@ public class AnimGLEventListener6 extends AnimListener {
                 gl.glRotatef(180f, 0, 0, 1);
 
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+         
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -257,14 +242,14 @@ public class AnimGLEventListener6 extends AnimListener {
     }
      public void DrawVis(GL gl){
         gl.glEnable(GL.GL_BLEND);	
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[vis+7]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[vis+7]);	
 
         gl.glPushMatrix();
         gl.glTranslated(-.90, .90, 0);
         gl.glScaled(0.1, 0.1, 1);
 
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+        
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -280,14 +265,14 @@ public class AnimGLEventListener6 extends AnimListener {
     }
      public void DrawVis2(GL gl){
         gl.glEnable(GL.GL_BLEND);	
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[vis2+7]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[vis2+7]);	
 
         gl.glPushMatrix();
         gl.glTranslated(.90, .90, 0);
         gl.glScaled(0.1, 0.1, 1);
 
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+           
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -303,11 +288,11 @@ public class AnimGLEventListener6 extends AnimListener {
     }
     public void DrawBackground(GL gl){
         gl.glEnable(GL.GL_BLEND);	
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[4]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[4]);	
 
         gl.glPushMatrix();
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+        
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -321,16 +306,14 @@ public class AnimGLEventListener6 extends AnimListener {
         
         gl.glDisable(GL.GL_BLEND);
     }
-    /*
-    ** Draw pause 
-    */
+    
     public void DrawPause(GL gl){
         gl.glEnable(GL.GL_BLEND);	
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[5]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[5]);	
 
         gl.glPushMatrix();
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+       
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -346,12 +329,12 @@ public class AnimGLEventListener6 extends AnimListener {
     }
     public void DrawP1(GL gl){
         gl.glEnable(GL.GL_BLEND);	
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[13]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[13]);	
 
         gl.glPushMatrix();
         gl.glScaled(0.6, 0.6, 1);
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+        
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -367,12 +350,12 @@ public class AnimGLEventListener6 extends AnimListener {
     }
     public void DrawP2(GL gl){
         gl.glEnable(GL.GL_BLEND);	
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[14]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[14]);	
 
         gl.glPushMatrix();
         gl.glScaled(0.6, 0.6, 1);
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+          
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -383,16 +366,14 @@ public class AnimGLEventListener6 extends AnimListener {
                 gl.glVertex3f(-1.0f, 1.0f, -1.0f);
             gl.glEnd();
         gl.glPopMatrix();
-//        Anim.animator.stop();
+
         gl.glDisable(GL.GL_BLEND);
     }
-    /*
-    ** Draw lead 
-    */
+   
    public void DrawLead(GL gl,int x, int y){
        float scalex=118f,scaley=442f;
         gl.glEnable(GL.GL_BLEND);
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[6]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[6]);	
 
         gl.glPushMatrix();
             gl.glTranslated( x/(maxWidth/2.0) - 0.9, y/(maxHeight/2.0) - 0.9, 0);
@@ -400,7 +381,7 @@ public class AnimGLEventListener6 extends AnimListener {
             
 
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -417,7 +398,7 @@ public class AnimGLEventListener6 extends AnimListener {
    public void DrawLead2(GL gl,int x, int y){
        float scalex=118f,scaley=442f;
         gl.glEnable(GL.GL_BLEND);
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[6]);	// Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[6]);	
 
         gl.glPushMatrix();
             gl.glTranslated( x/(maxWidth/2.0) - 0.9, y/(maxHeight/2.0) - 0.9, 0);
@@ -425,7 +406,7 @@ public class AnimGLEventListener6 extends AnimListener {
             gl.glRotatef(180f, 0, 0, 1);
 
             gl.glBegin(GL.GL_QUADS);
-            // Front Face
+       
                 gl.glTexCoord2f(0.0f, 0.0f);
                 gl.glVertex3f(-1.0f, -1.0f, -1.0f);
                 gl.glTexCoord2f(1.0f, 0.0f);
@@ -439,10 +420,7 @@ public class AnimGLEventListener6 extends AnimListener {
         
         gl.glDisable(GL.GL_BLEND);
     }
-   /*
-   ** move the lead
-   ** 
-   */
+  
    public void moveLead(GL gl,boolean isvisiable[] ,int xLead[],int yLead[],int no){
        if(no==1){
        for(int i=0;i<isvisiable.length ;i++ ){
@@ -471,9 +449,7 @@ public class AnimGLEventListener6 extends AnimListener {
        }
        }
    }
-    /*
-    ** set the lead
-    */
+  
     public void setLead(boolean visible[],int x[],int y[]){
         for(int i=0;i<visible.length;i++){
             if(visible[i]==false){
@@ -500,10 +476,7 @@ public class AnimGLEventListener6 extends AnimListener {
             }
         }
     }
-    /*
-     * KeyListener
-     */    
-
+   
     public void handleKeyPress() {
 
         if (isKeyPressed(KeyEvent.VK_LEFT)) {
@@ -521,9 +494,7 @@ public class AnimGLEventListener6 extends AnimListener {
             }
             animationIndex++;
         }
-        /*
-        ** player 2
-        */
+     
         if (isKeyPressed(KeyEvent.VK_A)) {
             if (x2 > 0) {
                 x2--;
@@ -588,7 +559,7 @@ public class AnimGLEventListener6 extends AnimListener {
             if (isKeyPressed(KeyEvent.VK_ESCAPE)){
                   Game.gameplay();
                   anim.dispose();
-                 // this.clip.stop();
+               
               }
         }
         
@@ -596,13 +567,13 @@ public class AnimGLEventListener6 extends AnimListener {
                   Game.gameplay();
                   anim.dispose();
                   System.exit(0);
-                //  this.clip.stop();
+                
         }
         
             if (isKeyPressed(KeyEvent.VK_ESCAPE)){
                   Game.gameplay();
                   anim.dispose();
-                 // this.clip.stop();
+               
               }
         
     } 
@@ -615,7 +586,7 @@ public class AnimGLEventListener6 extends AnimListener {
  
     @Override 
     public void keyTyped(final KeyEvent event) {
-        // don't care 
+      
     } 
  
     public boolean isKeyPressed(final int keyCode) {
