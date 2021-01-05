@@ -37,7 +37,7 @@ public class WriteFile {
     
     
     public static boolean isHigh(int a) {
-        String file_name = "D:\\El Dok8\\Com.s\\CS304 Graphics\\FinalGmae\\src\\Texture\\scoreF.txt";
+        String file_name = "src\\Texture\\scoreF.txt";
         File f = new File(file_name);
         Scanner input = null;
         try {
@@ -59,7 +59,7 @@ public class WriteFile {
         return false;
     }
     public static String[] getHigh() throws FileNotFoundException, IOException{
-       String file_name = "D:\\El Dok8\\Com.s\\CS304 Graphics\\FinalGmae\\src\\Texture\\scoreF.txt";
+       String file_name = "src\\Texture\\scoreF.txt";
         File f = new File(file_name);
         Scanner input = new Scanner(f);
         String [] score = new String[10];
@@ -71,7 +71,7 @@ public class WriteFile {
        return score;
     }
     public static void cheakScore(String s,int a) throws FileNotFoundException, IOException{
-        String file_name = "D:\\El Dok8\\Com.s\\CS304 Graphics\\FinalGmae\\src\\Texture\\scoreF.txt";
+        String file_name = "src\\Texture\\scoreF.txt";
         File f = new File(file_name);
         Scanner input = new Scanner(f);
         String [] score = new String[10];

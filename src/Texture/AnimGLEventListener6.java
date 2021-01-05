@@ -93,7 +93,7 @@ public class AnimGLEventListener6 extends AnimListener {
            
         try {
             music = new FileInputStream(new File("[ONTIVA.COM] Cyberpunk 2077 - Main Menu Theme-HQ.wav"));
-            audioInputStream = AudioSystem.getAudioInputStream(new File("C:\\Users\\Altaier.DESKTOP-532GCGK\\Documents\\NetBeansProjects\\FinalGame\\[ONTIVA.COM] Cyberpunk 2077 - Main Menu Theme-HQ.wav").getAbsoluteFile());
+            audioInputStream = AudioSystem.getAudioInputStream(new File("[ONTIVA.COM] Cyberpunk 2077 - Main Menu Theme-HQ.wav").getAbsoluteFile());
    
             clip = AudioSystem.getClip(); 
           

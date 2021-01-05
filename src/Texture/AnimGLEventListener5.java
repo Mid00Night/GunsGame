@@ -115,7 +115,7 @@ public class AnimGLEventListener5 extends AnimListener {
                              
         try {
            music = new FileInputStream(new File("[ONTIVA.COM] Dying Light OST - Main Menu Theme 1-HQ.wav"));
-            audioInputStream = AudioSystem.getAudioInputStream(new File("C:\\Users\\Altaier.DESKTOP-532GCGK\\Documents\\NetBeansProjects\\FinalGame\\[ONTIVA.COM] Dying Light OST - Main Menu Theme 1-HQ.wav").getAbsoluteFile());
+            audioInputStream = AudioSystem.getAudioInputStream(new File("[ONTIVA.COM] Dying Light OST - Main Menu Theme 1-HQ.wav").getAbsoluteFile());
         
             clip = AudioSystem.getClip(); 
           

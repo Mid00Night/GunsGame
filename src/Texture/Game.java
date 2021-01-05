@@ -68,20 +68,6 @@ public class Game extends JFrame implements ActionListener {
         jp1.setLayout(null);
         howto.setLayout(null);
 
-        full = new GradientButton("Max");
-        full.setActionCommand("full");
-        full.addActionListener(this);
-        full.setFont(new Font("Felix Titling", 1, 12));
-        full.setForeground(Color.WHITE);
-        jp.add(full);
-        full.setBounds(600, 30, 70, 40);
-        
-        min = new GradientButton("Min");
-        min.setActionCommand("min");
-        min.addActionListener(this);
-        min.setFont(new Font("Felix Titling", 1, 12));
-        min.setForeground(Color.WHITE);
-        jp.add(min);
 
         single = new GradientButton("Single Player");
         single.setActionCommand("play");
@@ -178,81 +164,7 @@ public class Game extends JFrame implements ActionListener {
         this.dispose();
     }
 
-    public void full_screan() {
-        tk = Toolkit.getDefaultToolkit().getScreenSize();
-       
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-       
-       // Toolkit tk = Toolkit.getDefaultToolkit();
-        setBounds(100, 100, (int) tk.getWidth() , (int) tk.getHeight());
-         setLocationRelativeTo(null);
-        
-        
-        
-        min.setBounds((int) tk.getWidth()-150, 30, 70, 40);
-    
-         full.setBounds(-100, 30, 70, 40);
-        
-        single.setBounds((int) (tk.getWidth()/2)-75, 40, 150, 70);
-        
-        multi.setBounds((int) (tk.getWidth()/2)-75, 170, 150, 70);
-
-       
-        how.setBounds((int) (tk.getWidth()/2)-75, 300, 150, 70);
-
-        
-        quit.setBounds((int) (tk.getWidth()/2)-75, 430, 150, 70);
-
-        high.setBounds((int) (tk.getWidth()/2)-75, 560, 150, 70);
-
-     
-        jLabel1.setBounds(50, 0 ,(int) tk.getWidth(),(int) tk.getHeight());
-//
-       
-        normal.setBounds((int) (tk.getWidth()/2)-75, 40, 150, 70);
-
-      
-        hard.setBounds((int) (tk.getWidth()/2)-75, 170, 150, 70);
-
-        
-        back.setBounds((int) (tk.getWidth()/2)-75, 430, 150, 70);
-
-       
-        jLabel2.setBounds(50, 0 ,(int) tk.getWidth(),(int) tk.getHeight());
-        this.setSize((int) tk.getWidth(), (int) tk.getHeight());
-    }
-    public void min_screan() {
-        tk = Toolkit.getDefaultToolkit().getScreenSize();
-         full.setBounds(600, 30, 70, 40);
-    
-        single.setBounds(250, 40, 150, 70);
-
-      
-        multi.setBounds(250, 170, 150, 70);
-
-
-        how.setBounds(250, 300, 150, 70);
-
-    
-        quit.setBounds(250, 430, 150, 70);
-
-  
-        high.setBounds(250, 560, 150, 70);
-
-        jLabel1.setBounds(0, 0, 700, 700);
-//
-        normal.setBounds(250, 40, 150, 70);
-
-    
-        hard.setBounds(250, 170, 150, 70);
-
-      
-        back.setBounds(250, 430, 150, 70);
-
-        jLabel2.setBounds(0, 0, 700, 700);
-        this.setSize(700,700);
-    }
+   
 
     public void play(boolean a) {
         new Anim(a);
@@ -288,11 +200,7 @@ public class Game extends JFrame implements ActionListener {
             this.setVisible(true);
         } else if (e.getActionCommand() == "stop") {
             stop();
-        }  else if (e.getActionCommand() == "full") {
-            full_screan();
-        }  else if (e.getActionCommand() == "min") {
-            min_screan();
-        } else if (e.getActionCommand() == "high") {
+        }  else if (e.getActionCommand() == "high") {
 
             cont.removeAll();
             cont.repaint();
