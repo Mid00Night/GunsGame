@@ -1,11 +1,6 @@
 package Texture;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//package project;
+
 
 import com.sun.opengl.util.*;
 import java.awt.*;
@@ -21,20 +16,8 @@ public class Anim extends JFrame {
     AnimListener listener;
     AnimListener listener2;
     public static Animator animator;
-//    public static void main(String[] args) {
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Anim.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//           Anim a = new Anim();
-//    }
-
+    
+    
 
     public Anim() {
         GLCanvas glcanvas;
@@ -47,10 +30,10 @@ public class Anim extends JFrame {
         animator.add(glcanvas);
         animator.start();
         
-        //test area
         
         
-        //test area
+        
+        
         setTitle("Guns Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 700);
@@ -70,10 +53,10 @@ public class Anim extends JFrame {
         animator.add(glcanvas);
         animator.start();
         
-        //test area
+       
         
         
-        //test area
+        
         setTitle("Guns Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 700);
@@ -93,10 +76,10 @@ public Anim(int a) {
         animator.add(glcanvas);
         animator.start();
         
-        //test area
         
         
-        //test area
+        
+       
         setTitle("Guns Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 700);

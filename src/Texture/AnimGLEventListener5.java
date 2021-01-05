@@ -1,13 +1,8 @@
 package Texture;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//package project;
 
-//import WriteFile;
+
+
 import com.sun.opengl.util.j2d.TextRenderer;
 import java.awt.Color;
 import java.awt.Font;
@@ -17,7 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import javax.media.opengl.*;
 import sun.audio.AudioStream;
-import   java.io.InputStream;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.BitSet;
@@ -40,7 +35,7 @@ public class AnimGLEventListener5 extends AnimListener {
     Anim anim;
     TextRenderer renderer=new TextRenderer(new Font("SanasSerif",Font.BOLD,20));
 
-    // mt8erat al lead al player 1
+   
     boolean visible[] = {false,false,false,false,false};
     int xlead [] ={0,0,0,0,0};
     int ylead [] ={0,0,0,0,0};
@@ -54,24 +49,24 @@ public class AnimGLEventListener5 extends AnimListener {
     int animateZombie []    = new int[2];
     
     int vis = 0;
-    //al start bta3 w2t ma la rosas be5ls
+    
     long start;
     
     boolean changeVis = true,changeVis2=true;
-    //animation player 1 and 2
+    
     int animationIndex = 00;
     int maxWidth = 100;
     int maxHeight = 100;
-    // x and y ll player 1 and 2
+   
     int x = maxWidth/2, y = 0;
-    //
+    
     int score=0;
-    //time
+   
     String time =java.time.LocalTime.now()+"";
     
     boolean isEasy = true;
        
-    // Download enemy textures from https://craftpix.net/freebies/free-monster-2d-game-items/
+    
     String textureNames[] = {   "Man1.png","Man2.png","Man3.png","Man4.png","Back.png","pause.png","lead.png",
                                 "5.png","4.png","3.png","2.png","1.png","0.png"
                                 ,"z1.png","z2.png","z3.png","z4.png","backG.png","gameOver.png"
@@ -79,21 +74,16 @@ public class AnimGLEventListener5 extends AnimListener {
     };
     TextureReader.Texture texture[] = new TextureReader.Texture[textureNames.length];
     int textures[] = new int[textureNames.length];
-    //music
+    
     AudioInputStream audioInputStream; 
     Clip clip;
-    /*
-    ** set the way
-    */
+   
 
     AnimGLEventListener5(Anim aThis) {
         anim = aThis;
     }
     
-    /*
-     5 means gun in array pos
-     x and y coordinate for gun 
-     */
+   
     public void init(GLAutoDrawable gld) {
         initial();
         GL gl = gld.getGL();
